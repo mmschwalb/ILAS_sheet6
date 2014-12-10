@@ -1,0 +1,87 @@
+	% HMC Math dept HW template example
+	% v0.04 by Eric J. Malm, 10 Mar 2005
+	\documentclass[10pt,a4paper,boxed]{hmcpset}
+
+	% set 1-inch margins in the document
+	% \usepackage[margin=1in]{geometry}
+	\usepackage{enumerate}
+	\usepackage{todonotes}
+	\usepackage{tikz}
+	\usetikzlibrary{positioning}
+	\usepackage{subfig} % subfigures in figures.	
+	\usepackage{pgfplots}
+	\usepackage{amsmath}
+	\usepackage{amsfonts}
+	\usepackage{amssymb}
+	
+	%% work around for subfig and asy environment
+	\makeatletter
+	\newsavebox{\sfe@box}
+	\newenvironment{subfloatenv}[2]{%
+	\def\sfe@caption{#1}%
+	\def\sfe@label{#2}%
+	\setbox\sfe@box\hbox\bgroup\color@setgroup}%
+	{\color@endgroup\egroup\subfloat[\sfe@caption]%
+	{\usebox{\sfe@box}\label{\sfe@label}}}
+	\makeatother
+
+	% include this if you want to import graphics files with /includegraphics
+	\usepackage{graphicx}
+
+	\renewcommand*{\familydefault}{\sfdefault}
+	\newcommand{\vect}[1]{\mathbf{#1}}
+	\newcommand{\Vor}[1]{\textrm{Vor}(#1)}
+	\DeclareMathOperator{\gain}{Gain}
+	\DeclareMathOperator{\entropy}{H}
+	\DeclareMathOperator{\prob}{P}
+
+	\tikzset{node distance=2cm, inner/.style={draw,circle}, leaf/.style={draw,rectangle}}
+
+	\usepackage{hyperref}
+
+	% info for header block in upper right hand corner
+	\name{Group 6: Timm Behner, Philipp Bruckschen, Patrick Kaster, Markus Schwalb}
+	\class{MA-INF 4111 - Intelligent Learning and Analysis Systems: Machine Learning}
+	\assignment{Exercise Sheet 4}
+	% \duedate{09/03/2004}
+
+	\begin{document}
+	
+		\begin{problem}[1. Confidence Intervals]
+		\end{problem}
+
+		\begin{solution}		
+			\begin{enumerate}[(a)]
+				\item given: $\textrm{error}_S(h) = \frac{10}{65}, n=65$
+					\begin{align*}
+						\textrm{error}_{\textrm{D}}^{95\%}(h) & \leq \textrm{error}_S(h) + z_N \sqrt{\frac{\textrm{error}_S(h)(1-\textrm{error}_S(h))}{n}}\\
+															  & = \frac{10}{65} + 1.96 \sqrt{\frac{\frac{10}{65}(1-\frac{10}{65})}{65}}\\
+															  & \thickapprox 0.24
+					\end{align*}
+					
+				\item 
+					\begin{align*}
+						\textrm{error}_{\textrm{D}}^{90\%}(h) & \leq \frac{10}{65} + 1.64 					\sqrt{\frac{\frac{10}{65}(1-\frac{10}{65})}{65}}\\
+															  & \thickapprox 0.23
+					\end{align*}
+									 			
+			\end{enumerate}
+			
+		\end{solution}		
+
+		\begin{problem}[2. Sample Size]
+		\end{problem}
+		\begin{solution}
+			given: $\textrm{error}_D(h) \in [0.2, 0.6] \Rightarrow \sigma = 0.2$\\
+			wanted: bound on error $E<0.1$
+			\begin{align*}
+				E & = z_N \frac{\sigma}{\sqrt{n}} \Rightarrow \\
+				n & = \left( z_N \frac{\sigma}{E} \right)^2
+			\end{align*}
+			\begin{align*}
+				n & = \left( 1.96 \frac{0.2}{0.1} \right)^2 \\
+				  & = \left\lceil 15.3664 \right\rceil = 16
+			\end{align*}
+		\end{solution}
+
+	\end{document}
