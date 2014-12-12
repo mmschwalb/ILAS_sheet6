@@ -96,5 +96,10 @@
 							\end{align*}
 					\end{enumerate}
 				\end{solution}		
-
+\begin{problem}[5. AUC]
+\end{problem}
+\begin{solution}
+Use probability based ranking as described in the lecture. Assume that for every sample $x\in S$ there is a teacher output classifying $x$ to be a positive or negative sample. Define $H^+$ to be the half-space that contains the most positive samples and $H^-$ to be the other half-space. If both sides have an equal number of positive samples then choose one side to be $H^+$ at random. Now the probability that a sample $x\in S$ is positive is $p^+(x)=\frac{^+ n_S^{H^i}}{n_S^{H^i}}$ where $i\in\{+,-\}$, $i$ is the half-space where sample x is located in, $^+ n_S^{H^i}$ is the number of all samples in $H^i$ that are ranked positive and $n_S^{H^i}$ is the number of all samples in $H^i$. Obviously this would only lead to 2 ranks and would be quite a poor ranking.\\
+A better ranking would be to consider the distance of $x$ to the hyperplane $H$. The further away a point $x$ in $H^+$ is away from $H$, the better it is ranked (one hopes that the further away a point is from the border the more sure one can be that is in the correct half-space). On the other side a point $x$ in $H^-$ is ranked higher the closer it is to $H$ (here one hopes that a misclassified sample will be close to the border rather than being far away on the wrong side). Consider the distances between points $x$ and the hyperplane $H$ to be between $x$ and a point on the hyperplane that yields the smallest distance in the euclidean distance measure. In general this will lead to more ranks than 2. (unless all points are located equally far away from either side of $H$).
+\end{solution}
 	\end{document}
